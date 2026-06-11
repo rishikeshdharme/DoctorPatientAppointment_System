@@ -13,5 +13,7 @@ namespace DoctorPatientAppointment_System.Model
 
         public string PasswordHash { get; set; } = string.Empty;
 
+        public ICollection<Appointment>? Appointments { get; set; }
+
     }
 }

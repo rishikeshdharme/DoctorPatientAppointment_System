@@ -1,4 +1,6 @@
 using DoctorPatientAppointment_System.DataBaseConnection;
+using DoctorPatientAppointment_System.Repository;
+using DoctorPatientAppointment_System.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,11 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddOpenApi();
+
+builder.Services.AddScoped<DoctorRepository>();
+builder.Services.AddScoped<DoctorServices>();
 
 builder.Services.AddOpenApi();
 
