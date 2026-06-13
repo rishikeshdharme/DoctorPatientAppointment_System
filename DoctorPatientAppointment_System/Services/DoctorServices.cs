@@ -74,5 +74,22 @@ namespace DoctorPatientAppointment_System.Services
         }
 
 
-}
+        public async Task<Doctor_DataResponse> GetDoctorByName(String doctorName)
+        {
+            var doctor = await doctorRepository.GetDoctorByName(doctorName);
+            if (doctor == null)
+            {
+                return null;
+            }
+            return new Doctor_DataResponse
+            {
+                DoctorId = doctor.DoctorId,
+                DoctorName = doctor.DoctorName,
+                DoctorSpecialization = doctor.DoctorSpecialization,
+                Email = doctor.Email
+            };
+        }
+
+
+    }
 }

@@ -90,7 +90,14 @@ namespace DoctorPatientAppointment_System.Repository
         #endregion
 
 
-        
+        #region Code of fetching doctor by doctorid
+        public async Task<Doctor?> GetDoctorByName(String doctorName)
+        {
+            return await dbContext.Doctors.Include(d => d.Appointments).FirstOrDefaultAsync(d => d.DoctorName == doctorName);
+        }
+        #endregion
+
+
 
 
     }

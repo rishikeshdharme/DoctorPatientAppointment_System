@@ -92,6 +92,20 @@ namespace DoctorPatientAppointment_System.Controllers
             }
 
         }
+
+        [HttpGet("getdoctorbyname/{doctorname}")]
+        public async Task<IActionResult> GetDoctorByName(string doctorname)
+        {
+            Doctor_DataResponse doctorList = await doctorServices.GetDoctorByName(doctorname);
+            if (doctorList != null )
+            {
+                return Ok(doctorList);
+            }
+            else
+            {
+                return NotFound("No doctors found with the provided name.");
+            }
+        }
 }
 }
 
