@@ -17,6 +17,8 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddScoped<DoctorRepository>();
 builder.Services.AddScoped<DoctorServices>();
+builder.Services.AddScoped<PatientRepository>();
+builder.Services.AddScoped<PatientService>();
 
 builder.Services.AddOpenApi();
 
