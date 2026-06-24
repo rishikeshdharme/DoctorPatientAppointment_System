@@ -126,8 +126,59 @@ namespace DoctorPatientAppointment_System.Repository
 
 
 
+        public async Task<List<Appointment>> GetAppointmentsByPatientId(int patientId)
+        {
+            return await dbContext.Appointments
+                .Include(a => a.Doctor)
+                .Include(a => a.Patient)
+                .Where(a => a.PatientId == patientId)
+                .ToListAsync();
 
+        }
 
-    
-}
+        public async Task<List<Appointment>> GetAppointmentsByDoctorId(int doctorId)
+        {
+            return await dbContext.Appointments
+                .Include(a => a.Doctor)
+                .Include(a => a.Patient)
+                .Where(a => a.DoctorId == doctorId)
+                .ToListAsync();
+        }
+
+        public async Task<List<Appointment>> GetAppointmentsByStatus(AppointmentStatus status)
+        {
+            return await dbContext.Appointments
+                .Include(a => a.Doctor)
+                .Include(a => a.Patient)
+                .Where(a => a.Status == status)
+                .ToListAsync();
+        }
+
+        public async Task<List<Appointment>> GetAppointmentsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            return await dbContext.Appointments
+                .Include(a => a.Doctor)
+                .Include(a => a.Patient)
+                .Where(a => a.AppointmentDate >= startDate && a.AppointmentDate <= endDate)
+                .ToListAsync();
+        }
+
+        public async Task<List<Appointment>> GetAppointmentsByDoctorAndStatus(String Doctorname, AppointmentStatus status)
+        {
+            return await dbContext.Appointments
+                .Include(a => a.Doctor)
+                .Include(a => a.Patient)
+                .Where(a => a.Doctor.DoctorName == Doctorname && a.Status == status)
+                .ToListAsync();
+        }
+
+        public async Task<List<Appointment>> GetAppointmentsByPatientAndStatus(String Patientname, AppointmentStatus status)
+        {
+            return await dbContext.Appointments
+                .Include(a => a.Doctor)
+                .Include(a => a.Patient)
+                .Where(a => a.Patient.PatientName == Patientname && a.Status == status)
+                .ToListAsync();
+        }
+    }
 }

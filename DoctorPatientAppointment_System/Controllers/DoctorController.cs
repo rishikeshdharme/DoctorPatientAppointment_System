@@ -18,7 +18,7 @@ namespace DoctorPatientAppointment_System.Controllers
         }
 
         [HttpPost("adddoctor")]
-        public async Task<IActionResult> AddDoctor(Doctor doctor)
+        public async Task<IActionResult> AddDoctor([FromBody]Doctor doctor)
         {
            if( await doctorServices.CheckISExistingEmail(doctor.Email) == true)
             {
@@ -40,7 +40,7 @@ namespace DoctorPatientAppointment_System.Controllers
         }
 
         [HttpPut("updatedoctor/{doctorid}")]
-        public async Task<IActionResult> UpdateDoctor(Doctor doctor, int doctorid)
+        public async Task<IActionResult> UpdateDoctor([FromBody]Doctor doctor, int doctorid)
         {
            
                 bool result = await doctorServices.UpdateDoctor(doctor, doctorid);
