@@ -2,5 +2,10 @@
 {
     public class TelegramChatIDRequest
     {
+      
+            public long ChatId { get; set; }
+
+      
+
     }
 }

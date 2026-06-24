@@ -88,5 +88,17 @@ namespace DoctorPatientAppointment_System.Repository
         {
             return await dbContext.Patients.Include(p => p.Appointments).FirstOrDefaultAsync(p => p.PatientName == patientname);
         }
-}
+
+        public async Task<bool> UpdateTelegramChatId(int patientId, long chatId)
+        {
+            var patient = dbContext.Patients.Find(patientId);
+            if (patient == null) return false;
+
+            patient.TelegramChatId = chatId;
+            dbContext.SaveChangesAsync();
+            return true;
+        }
+
+
+    }
 }

@@ -1,4 +1,5 @@
-﻿using DoctorPatientAppointment_System.Model;
+﻿using DoctorPatientAppointment_System.DTO_Requests_;
+using DoctorPatientAppointment_System.Model;
 using DoctorPatientAppointment_System.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -102,6 +103,14 @@ namespace DoctorPatientAppointment_System.Controllers
             }
 
 
+        }
+
+        [HttpPost("{id}/telegram-chatid")]
+        public async Task<IActionResult> SetTelegramChatId(int id, [FromBody] TelegramChatIDRequest request)
+        {
+            var result = patientService.UpdateTelegramChatId(id, request.ChatId);
+            if (result == null) return NotFound("Patient not found");
+            return Ok("Telegram Chat ID linked successfully!");
         }
     }
 }

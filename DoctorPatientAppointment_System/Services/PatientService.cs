@@ -113,6 +113,12 @@ namespace DoctorPatientAppointment_System.Services
         }
 
 
-}
+        public async Task<bool> UpdateTelegramChatId(int patientId, long chatId)
+        {
+            return await patientRepository.UpdateTelegramChatId(patientId, chatId);
+        }
+
+
+    }
 }
 
